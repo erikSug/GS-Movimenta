@@ -14,7 +14,7 @@ public class MainApp extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/br/com/epdmcorp/login.fxml"));
         Parent root = loader.load();
 
-        Scene scene = new Scene(root, 1280, 720);
+        Scene scene = new Scene(root);
 
         stage.setTitle("Movimenta");
         stage.setScene(scene);
