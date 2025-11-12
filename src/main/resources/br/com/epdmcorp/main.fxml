@@ -29,6 +29,11 @@
                         <Font name="JetBrains Mono SemiBold" size="32.0" />
                      </font>
                   </Button>
+                  <Button layoutX="55.0" layoutY="198.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: #FF6B35;" text="Sair" textFill="WHITE">
+                     <font>
+                        <Font name="JetBrains Mono SemiBold" size="32.0" />
+                     </font>
+                  </Button>
                </children>
             </VBox>
          </children></VBox>

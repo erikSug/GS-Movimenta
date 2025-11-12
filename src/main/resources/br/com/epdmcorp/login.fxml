@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox fx:controller="br.com.epdmcorp.LoginController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.epdmcorp.LoginController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="319.0" style="-fx-background-color: #FF6B35;">
          <children>
@@ -21,7 +21,7 @@
                </font>
             </Label>
          </children></VBox>
-      <VBox alignment="CENTER" prefHeight="720.0" prefWidth="658.0" spacing="60.0">
+      <VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="658.0" spacing="60.0">
          <children>
             <Label prefHeight="104.0" prefWidth="214.0" text="Login" textAlignment="CENTER" textFill="#ff6b35">
                <font>
@@ -31,29 +31,35 @@
                   <Insets left="35.0" />
                </VBox.margin>
             </Label>
-            <VBox alignment="CENTER" prefHeight="225.0" prefWidth="657.0" spacing="10.0">
+            <VBox alignment="CENTER" prefHeight="225.0" prefWidth="657.0">
                <children>
                   <Label text="Login">
                      <font>
                         <Font name="JetBrains Mono Light" size="41.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtUsuario" prefHeight="25.0" prefWidth="350.0" promptText="Digite o nome...">
+                  <TextField fx:id="txtUsuario" prefHeight="100.0" prefWidth="350.0" promptText="Digite o nome...">
                      <VBox.margin>
                         <Insets left="200.0" right="200.0" />
                      </VBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
                   </TextField>
                   <Label layoutX="277.0" layoutY="82.0" text="Senha">
                      <font>
                         <Font name="JetBrains Mono Light" size="41.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtSenha" layoutX="210.0" layoutY="138.0" prefHeight="25.0" prefWidth="350.0" promptText="Digite a senha...">
+                  <TextField fx:id="txtSenha" layoutX="210.0" layoutY="138.0" prefHeight="100.0" prefWidth="350.0" promptText="Digite a senha...">
                      <VBox.margin>
                         <Insets left="200.0" right="200.0" />
                      </VBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
                   </TextField>
-                  <Button fx:id="btnLogin" onAction="#handleLogin" mnemonicParsing="false" prefHeight="44.0" prefWidth="192.0" style="-fx-background-color: #FF6B35;" text="Entrar" textFill="WHITE">
+                  <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#handleLogin" prefHeight="44.0" prefWidth="192.0" style="-fx-background-color: #FF6B35;" text="Entrar" textFill="WHITE">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -67,6 +73,9 @@
          <HBox.margin>
             <Insets />
          </HBox.margin>
+         <padding>
+            <Insets top="100.0" />
+         </padding>
       </VBox>
    </children>
 </HBox>
