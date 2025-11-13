@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<HBox  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.epdmcorp.MainController" >
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="339.0" style="-fx-background-color: #FF6B35;">
          <children>
@@ -29,7 +29,7 @@
                         <Font name="JetBrains Mono SemiBold" size="32.0" />
                      </font>
                   </Button>
-                  <Button layoutX="55.0" layoutY="198.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: #FF6B35;" text="Sair" textFill="WHITE">
+                  <Button fx:id="btnSair" onAction="#logout" layoutX="55.0" layoutY="198.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: #FF6B35;" text="Sair" textFill="WHITE">
                      <font>
                         <Font name="JetBrains Mono SemiBold" size="32.0" />
                      </font>
