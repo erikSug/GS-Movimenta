@@ -15,8 +15,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.TextAlignment;
 
 import java.awt.*;
+import java.net.URI;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -51,6 +53,20 @@ public class MainController implements Initializable {
         return label;
     }
 
+    private void abrirLink(String url) {
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+                if (desktop.isSupported(Desktop.Action.BROWSE)) {
+                    desktop.browse(new URI(url));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Erro ao abrir o link: " + url);
+        }
+    }
+
     private VBox criarAprenda(){
         VBox section = mainSectionConfig();
 
@@ -64,7 +80,7 @@ public class MainController implements Initializable {
 
         for (int i = 0; i < 2; i++) {
             ColumnConstraints col = new ColumnConstraints();
-            col.setMaxWidth(280.0);
+            col.setMaxWidth(300.0);
             col.setMinWidth(10.0);
             grid.getColumnConstraints().add(col);
         }
@@ -77,24 +93,48 @@ public class MainController implements Initializable {
         }
 
         String[][] aprendaConteudo = {
-                {"/br/com/epdmcorp/images/card_cadeirante.jpg","Musculação para Cadeirantes","Conheça 7 exercícios para cadeirantes"},
-                {"/br/com/epdmcorp/images/card_cadeirante.jpg","Musculação para Cadeirantes","Conheça 7 exercícios para cadeirantes"}
+                {"/br/com/epdmcorp/images/card_cadeirante.jpg","Musculação para Cadeirantes","Conheça 7 exercícios para cadeirantes.","https://freedom.ind.br/musculacao-para-cadeirantes/"},
+                {"/br/com/epdmcorp/images/card_ferias.jpg","Treino de Férias","5 exercícios para fazer com os amigos.","https://www.smartfit.com.br/news/fitness/treino-de-ferias-exercicios-rapidos/"},
+                {"/br/com/epdmcorp/images/card_trabalho.jpg","Trabalho e exercício", "4 razões para se exercitar antes do expediente.", "https://forbes.com.br/carreira/2024/11/4-razoes-para-se-exercitar-antes-do-fim-do-expediente/"}
         };
 
         for(int i = 0; i < aprendaConteudo.length; i++){
             HBox card = new HBox(10);
+            card.setPadding(new Insets(10));
             card.setAlignment(Pos.CENTER);
             card.setStyle("-fx-border-color: black; -fx-border-width: 1; -fx-border-radius: 30;");
             card.setPrefHeight(100);
-            card.setPrefWidth(250);
+            card.setPrefWidth(270);
 
             Image image = new Image(getClass().getResourceAsStream(aprendaConteudo[i][0]));
             ImageView cardImage = new ImageView(image);
+            cardImage.setFitHeight(84);
+            cardImage.setFitWidth(110);
+
+            VBox cardConteudo = new VBox();
+            cardConteudo.setAlignment(Pos.TOP_CENTER);
+            cardConteudo.setPadding(new Insets(10));
 
             Label cardTitulo = new Label(aprendaConteudo[i][1]);
-            Label cardDesc = new Label(aprendaConteudo[i][2]);
+            cardTitulo.setFont(Font.font("JetBrains Mono", FontWeight.SEMI_BOLD, 12));
+            cardTitulo.setWrapText(true);
+            cardTitulo.setPrefHeight(42);
+            cardTitulo.setPrefWidth(155);
+            cardTitulo.setTextAlignment(TextAlignment.CENTER);
 
-            card.getChildren().addAll(cardImage, cardTitulo, cardDesc);
+            Label cardDesc = new Label(aprendaConteudo[i][2]);
+            cardDesc.setPrefHeight(60);
+            cardDesc.setPrefWidth(140);
+            cardDesc.setWrapText(true);
+
+            Button saibaMais = new Button("Saiba Mais!");
+            saibaMais.setTextFill(Color.web("#ffffff"));
+            saibaMais.setStyle("-fx-background-color:  #ff6b35;");
+            final String linkUrl = aprendaConteudo[i][3];
+            saibaMais.setOnAction(event -> abrirLink(linkUrl));
+
+            cardConteudo.getChildren().addAll(cardTitulo, cardDesc, saibaMais);
+            card.getChildren().addAll(cardImage,cardConteudo);
 
             grid.add(card,i % 2,i/2);
         }
