@@ -28,7 +28,7 @@
                   <Font name="JetBrains Mono SemiBold" size="71.0" />
                </font>
                <VBox.margin>
-                  <Insets left="35.0" />
+                  <Insets left="26.0" />
                </VBox.margin>
             </Label>
             <VBox alignment="CENTER" prefHeight="225.0" prefWidth="657.0">

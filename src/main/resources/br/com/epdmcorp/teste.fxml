@@ -37,6 +37,12 @@
                </children>
             </VBox>
          </children></VBox>
-      <VBox fx:id="mainArea" prefHeight="720.0" prefWidth="949.0" />
+      <VBox fx:id="mainArea" alignment="CENTER" prefHeight="720.0" prefWidth="949.0">
+         <children>
+            <Label prefHeight="188.0" prefWidth="437.0" text="Exercícios" textFill="#ff6b35">
+               <font>
+                  <Font name="JetBrains Mono SemiBold" size="71.0" />
+               </font></Label>
+         </children></VBox>
    </children>
 </HBox>
