@@ -9,11 +9,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import javafx.event.ActionEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -32,7 +35,7 @@ public class MainController implements Initializable {
         VBox section = new VBox();
         section.setPrefWidth(width);
         section.setPrefHeight(height);
-        section.setAlignment(Pos.CENTER);
+        section.setAlignment(Pos.TOP_CENTER);
 
         return section;
     }
@@ -53,7 +56,50 @@ public class MainController implements Initializable {
 
         Label titulo = tituloConfig("Aprenda");
 
-        section.getChildren().addAll(titulo);
+        //        SETUP DO GRID
+        GridPane grid = new GridPane();
+        grid.setHgap(9);
+        grid.setVgap(9);
+        grid.setAlignment(Pos.CENTER);
+
+        for (int i = 0; i < 2; i++) {
+            ColumnConstraints col = new ColumnConstraints();
+            col.setMaxWidth(280.0);
+            col.setMinWidth(10.0);
+            grid.getColumnConstraints().add(col);
+        }
+
+        for (int i = 0; i < 3; i++) {
+            RowConstraints row = new RowConstraints();
+            row.setMinHeight(10.0);
+            row.setPrefHeight(200.0);
+            grid.getRowConstraints().add(row);
+        }
+
+        String[][] aprendaConteudo = {
+                {"/br/com/epdmcorp/images/card_cadeirante.jpg","Musculação para Cadeirantes","Conheça 7 exercícios para cadeirantes"},
+                {"/br/com/epdmcorp/images/card_cadeirante.jpg","Musculação para Cadeirantes","Conheça 7 exercícios para cadeirantes"}
+        };
+
+        for(int i = 0; i < aprendaConteudo.length; i++){
+            HBox card = new HBox(10);
+            card.setAlignment(Pos.CENTER);
+            card.setStyle("-fx-border-color: black; -fx-border-width: 1; -fx-border-radius: 30;");
+            card.setPrefHeight(100);
+            card.setPrefWidth(250);
+
+            Image image = new Image(getClass().getResourceAsStream(aprendaConteudo[i][0]));
+            ImageView cardImage = new ImageView(image);
+
+            Label cardTitulo = new Label(aprendaConteudo[i][1]);
+            Label cardDesc = new Label(aprendaConteudo[i][2]);
+
+            card.getChildren().addAll(cardImage, cardTitulo, cardDesc);
+
+            grid.add(card,i % 2,i/2);
+        }
+
+        section.getChildren().addAll(titulo,grid);
         return section;
     }
 
