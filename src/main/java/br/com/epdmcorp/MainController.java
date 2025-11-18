@@ -139,7 +139,62 @@ public class MainController implements Initializable {
         VBox section = mainSectionConfig();
         Label titulo = tituloConfig("Exercícios");
 
-        section.getChildren().addAll(titulo);
+        HBox cardSection = new HBox();
+        cardSection.setAlignment(Pos.CENTER);
+        cardSection.setPrefWidth(945);
+        cardSection.setPrefHeight(519);
+        cardSection.setSpacing(100);
+
+        String[][][] exercicioConteudo = {
+                {
+                        {"/br/com/epdmcorp/images/exercicio_leve.jpg", "Exercícios Leves"},
+                        {"5 Pontos pela finalização", "Caminhada (30 Minutos)", "Natação (45 Minutos)", "Musculação Leve (20 Minutos)"}
+                },
+                {
+                        {"/br/com/epdmcorp/images/exercicio_pesado.jpg", "Exercícios Pesados"},
+                        {"9 Pontos pela finalização", "Corrida (20 Minutos)", "HIIT (30 Minutos)", "Musculação Pesada (Até o limite)"}
+                }
+        };
+
+        for(int i = 0; i <exercicioConteudo.length; i++){
+            VBox cardLayout = new VBox();
+            cardLayout.setStyle("-fx-border-color: black; -fx-border-width: 1; -fx-border-radius: 30;");
+            cardLayout.setAlignment(Pos.TOP_CENTER);
+            cardLayout.setSpacing(10);
+            cardLayout.setPrefWidth(279);
+            cardLayout.setPrefHeight(578);
+            cardLayout.setPadding(new Insets(10));
+
+            Image image = new Image(getClass().getResourceAsStream(exercicioConteudo[i][0][0]));
+            ImageView cardImage = new ImageView(image);
+            cardImage.setFitHeight(150);
+            cardImage.setFitWidth(200);
+
+            Label cardTitulo = new Label(exercicioConteudo[i][0][1]);
+            cardTitulo.setPrefWidth(209);
+            cardTitulo.setPrefHeight(55);
+            cardTitulo.setFont(Font.font("JetBrains Mono", FontWeight.SEMI_BOLD, 25));
+
+            cardLayout.getChildren().addAll(cardImage, cardTitulo);
+
+            for(int j = 0; j < exercicioConteudo[i][1].length;j++){
+                Label conteudoLabel = new Label(exercicioConteudo[i][1][j]);
+                conteudoLabel.setFont(Font.font("JetBrains Mono", FontWeight.NORMAL, 14));
+                conteudoLabel.setWrapText(true);
+                conteudoLabel.setPrefHeight(49);
+                conteudoLabel.setPrefWidth(176);
+                cardLayout.getChildren().add(conteudoLabel);
+            }
+
+            Button btnFinalizar = new Button("Finalizar");
+            btnFinalizar.setTextFill(Color.web("#ffffff"));
+            btnFinalizar.setStyle("-fx-background-color:  #ff6b35;");
+            cardLayout.getChildren().add(btnFinalizar);
+
+            cardSection.getChildren().addAll(cardLayout);
+        }
+
+        section.getChildren().addAll(titulo,cardSection);
         return section;
     }
     private VBox criarAprenda(){
