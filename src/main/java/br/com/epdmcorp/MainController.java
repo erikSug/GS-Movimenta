@@ -4,12 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
+
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
-import javafx.event.ActionEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -21,6 +21,7 @@ import javafx.scene.text.TextAlignment;
 import java.awt.*;
 import java.net.URI;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -316,7 +317,20 @@ public class MainController implements Initializable {
 
     @FXML
     private void logout(ActionEvent e){
-        MainApp.showLoginScene();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        ButtonType btnSim = new ButtonType("Sim");
+        ButtonType btnNao = new ButtonType("Não", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.setTitle("Logout");
+        alert.setHeaderText("Deseja sair da conta?");
+
+        alert.getButtonTypes().setAll(btnSim, btnNao);
+        Optional<ButtonType> resultado = alert.showAndWait();
+        if (resultado.isPresent()) {
+            if (resultado.get() == btnSim) {
+                MainApp.showLoginScene();
+            }
+        }
+
     }
 
     @Override
