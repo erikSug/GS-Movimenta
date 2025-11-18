@@ -21,7 +21,7 @@ public class UserPoints {
     public void adicionarPontosExercicioPesado() {
         this.userPoints += 9;
     }
-    public String calcularProporção() {
+    public String getText() {
         if (userPoints >= 15) {
             return "Excelente proporção! Seu corpo agradece esse cuidado.";
         } else if (userPoints >= 7) {

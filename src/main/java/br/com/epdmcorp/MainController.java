@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -25,7 +26,7 @@ import java.util.ResourceBundle;
 public class MainController implements Initializable {
     @FXML
     private Button btnSair;
-
+    private UserPoints userPoints;
     @FXML
     private VBox mainArea;
 
@@ -77,11 +78,11 @@ public class MainController implements Initializable {
         face.setFitWidth(139);
         face.setFitHeight(129);
         face.setPreserveRatio(true);
-        // REMOVER DEPOIS
-        Image image = new Image(getClass().getResourceAsStream("/br/com/epdmcorp/images/bom.png"));
+
+        Image image = new Image(getClass().getResourceAsStream(userPoints.getImageFace()));
         face.setImage(image);
 
-        Label faceText = new Label("Excelente proporção! Seu corpo agradece esse cuidado.");
+        Label faceText = new Label(userPoints.getText());
         faceText.setPrefHeight(82);
         faceText.setPrefWidth(230);
         faceText.setTextFill(Color.web("#ff6b35"));
@@ -105,7 +106,7 @@ public class MainController implements Initializable {
         labelExercicio.setFont(Font.font("JetBrains Mono", FontWeight.NORMAL, 18));
         labelExercicio.setTextFill(Color.web("#ff6b35"));
 
-        Label numExercicio = new Label("0 pontos");
+        Label numExercicio = new Label(userPoints.getUserPoints() + " Pontos");
         numExercicio.setFont(Font.font("JetBrains Mono", FontWeight.NORMAL, 18));
 
         Label labelTrabalho = new Label("Horas Trabalhadas");
@@ -125,7 +126,7 @@ public class MainController implements Initializable {
         labelEquipe.setFont(Font.font("JetBrains Mono", FontWeight.NORMAL, 18));
         labelEquipe.setTextFill(Color.web("#ff6b35"));
 
-        Label numEquipe = new Label("0/200");
+        Label numEquipe = new Label(userPoints.getUserPoints() + "/200");
         numEquipe.setFont(Font.font("JetBrains Mono", FontWeight.NORMAL, 18));
 
         equipeSection.getChildren().addAll(labelEquipe, numEquipe);
@@ -189,6 +190,26 @@ public class MainController implements Initializable {
             Button btnFinalizar = new Button("Finalizar");
             btnFinalizar.setTextFill(Color.web("#ffffff"));
             btnFinalizar.setStyle("-fx-background-color:  #ff6b35;");
+            final int exercicioIndex = i;
+            btnFinalizar.setOnAction(event -> {
+                if (exercicioIndex == 0){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Parabéns!");
+                    alert.setHeaderText("Exercício finalizado. ");
+                    alert.setContentText("5 pontos foram adicionados.");
+                    alert.showAndWait();
+                    userPoints.adicionarPontosExercicioLeve();
+                } else{
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Parabéns!");
+                    alert.setHeaderText("Exercício finalizado.");
+                    alert.setContentText("9 pontos foram adicionados.");
+                    alert.showAndWait();
+                    userPoints.adicionarPontosExercicioPesado();
+                }
+
+            });
+
             cardLayout.getChildren().add(btnFinalizar);
 
             cardSection.getChildren().addAll(cardLayout);
@@ -281,6 +302,7 @@ public class MainController implements Initializable {
 
     @FXML
     private void mostrarHome(){
+        homeSection = criarHome();
         mainArea.getChildren().setAll(homeSection);
     }
     @FXML
@@ -300,6 +322,7 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
+            userPoints = new UserPoints();
             criarConteudo();
             mostrarHome();
         } catch (Exception e) {
