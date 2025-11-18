@@ -29,6 +29,7 @@ public class MainController implements Initializable {
     @FXML
     private VBox mainArea;
 
+    private VBox homeSection;
     private VBox aprendaSection;
 
     private VBox mainSectionConfig(){
@@ -38,7 +39,7 @@ public class MainController implements Initializable {
         section.setPrefWidth(width);
         section.setPrefHeight(height);
         section.setAlignment(Pos.TOP_CENTER);
-
+        section.setSpacing(10);
         return section;
     }
 
@@ -66,7 +67,72 @@ public class MainController implements Initializable {
             System.err.println("Erro ao abrir o link: " + url);
         }
     }
+    private VBox criarHome() {
+        VBox section = mainSectionConfig();
+        Label title = tituloConfig("Seu Progresso");
 
+        ImageView face = new ImageView();
+        face.setFitWidth(139);
+        face.setFitHeight(129);
+        face.setPreserveRatio(true);
+        // REMOVER DEPOIS
+        Image image = new Image(getClass().getResourceAsStream("/br/com/epdmcorp/images/bom.png"));
+        face.setImage(image);
+
+        Label faceText = new Label("Excelente proporção! Seu corpo agradece esse cuidado.");
+        faceText.setPrefHeight(82);
+        faceText.setPrefWidth(230);
+        faceText.setTextFill(Color.web("#ff6b35"));
+        faceText.prefHeight(82);
+        faceText.prefWidth(230);
+        faceText.setWrapText(true);
+        faceText.setFont(Font.font("JetBrains Mono", FontWeight.NORMAL, 18));
+        //
+        HBox pontoSection = new HBox();
+        pontoSection.setAlignment(Pos.CENTER);
+        pontoSection.setPadding(new Insets(10));
+        pontoSection.setPrefWidth(945);
+        pontoSection.setPrefHeight(296);
+        pontoSection.setSpacing(100);
+
+        VBox exercicioTrabalhoSection = new VBox();
+        exercicioTrabalhoSection.setPrefHeight(295);
+        exercicioTrabalhoSection.setPrefWidth(228);
+
+        Label labelExercicio = new Label("Sua pontuação");
+        labelExercicio.setFont(Font.font("JetBrains Mono", FontWeight.NORMAL, 18));
+        labelExercicio.setTextFill(Color.web("#ff6b35"));
+
+        Label numExercicio = new Label("0 pontos");
+        numExercicio.setFont(Font.font("JetBrains Mono", FontWeight.NORMAL, 18));
+
+        Label labelTrabalho = new Label("Horas Trabalhadas");
+        labelTrabalho.setFont(Font.font("JetBrains Mono", FontWeight.NORMAL, 18));
+        labelTrabalho.setTextFill(Color.web("#ff6b35"));
+
+        Label numTrabalho = new Label("20 Horas");
+        numTrabalho.setFont(Font.font("JetBrains Mono", FontWeight.NORMAL, 18));
+
+        exercicioTrabalhoSection.getChildren().addAll(labelExercicio, numExercicio, labelTrabalho, numTrabalho);
+
+        VBox equipeSection = new VBox();
+        equipeSection.setPrefHeight(295);
+        equipeSection.setPrefWidth(228);
+
+        Label labelEquipe = new Label("Meta da equipe");
+        labelEquipe.setFont(Font.font("JetBrains Mono", FontWeight.NORMAL, 18));
+        labelEquipe.setTextFill(Color.web("#ff6b35"));
+
+        Label numEquipe = new Label("0/200");
+        numEquipe.setFont(Font.font("JetBrains Mono", FontWeight.NORMAL, 18));
+
+        equipeSection.getChildren().addAll(labelEquipe, numEquipe);
+
+        pontoSection.getChildren().addAll(exercicioTrabalhoSection, equipeSection);
+
+        section.getChildren().addAll(title,face,faceText, pontoSection);
+        return section;
+    }
     private VBox criarAprenda(){
         VBox section = mainSectionConfig();
 
@@ -144,9 +210,14 @@ public class MainController implements Initializable {
     }
 
     private void criarConteudo(){
+        homeSection = criarHome();
         aprendaSection = criarAprenda();
     }
 
+    @FXML
+    private void mostrarHome(){
+        mainArea.getChildren().setAll(homeSection);
+    }
     @FXML
     private void mostrarAprenda(){
         mainArea.getChildren().setAll(aprendaSection);
@@ -159,7 +230,13 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        criarConteudo();
-        mostrarAprenda();
+        try {
+            criarConteudo();
+            mostrarHome();
+        } catch (Exception e) {
+            e.printStackTrace();
+            Label errorLabel = new Label("Erro ao carregar a interface: " + e.getMessage());
+            mainArea.getChildren().setAll(errorLabel);
+        }
     }
 }

@@ -15,7 +15,7 @@
                </image></ImageView>
             <VBox alignment="CENTER" prefHeight="270.0" prefWidth="339.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #FF6B35;" text="Home" textFill="WHITE">
+                  <Button onAction="#mostrarHome"  mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #FF6B35;" text="Home" textFill="WHITE">
                      <font>
                         <Font name="JetBrains Mono SemiBold" size="32.0" />
                      </font></Button>
@@ -24,7 +24,7 @@
                         <Font name="JetBrains Mono SemiBold" size="32.0" />
                      </font>
                   </Button>
-                  <Button layoutX="55.0" layoutY="155.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: #FF6B35;" text="Aprenda" textFill="WHITE">
+                  <Button onAction="#mostrarAprenda" layoutX="55.0" layoutY="155.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: #FF6B35;" text="Aprenda" textFill="WHITE">
                      <font>
                         <Font name="JetBrains Mono SemiBold" size="32.0" />
                      </font>
