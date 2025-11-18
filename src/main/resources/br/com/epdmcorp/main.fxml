@@ -19,7 +19,7 @@
                      <font>
                         <Font name="JetBrains Mono SemiBold" size="32.0" />
                      </font></Button>
-                  <Button layoutX="80.0" layoutY="112.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: #FF6B35;" text="Exercícios" textFill="WHITE">
+                  <Button onAction="#mostrarExercicio" layoutX="80.0" layoutY="112.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: #FF6B35;" text="Exercícios" textFill="WHITE">
                      <font>
                         <Font name="JetBrains Mono SemiBold" size="32.0" />
                      </font>

@@ -30,6 +30,7 @@ public class MainController implements Initializable {
     private VBox mainArea;
 
     private VBox homeSection;
+    private VBox exercicioSection;
     private VBox aprendaSection;
 
     private VBox mainSectionConfig(){
@@ -67,6 +68,7 @@ public class MainController implements Initializable {
             System.err.println("Erro ao abrir o link: " + url);
         }
     }
+
     private VBox criarHome() {
         VBox section = mainSectionConfig();
         Label title = tituloConfig("Seu Progresso");
@@ -131,6 +133,13 @@ public class MainController implements Initializable {
         pontoSection.getChildren().addAll(exercicioTrabalhoSection, equipeSection);
 
         section.getChildren().addAll(title,face,faceText, pontoSection);
+        return section;
+    }
+    private VBox criarExercicio(){
+        VBox section = mainSectionConfig();
+        Label titulo = tituloConfig("Exercícios");
+
+        section.getChildren().addAll(titulo);
         return section;
     }
     private VBox criarAprenda(){
@@ -211,12 +220,17 @@ public class MainController implements Initializable {
 
     private void criarConteudo(){
         homeSection = criarHome();
+        exercicioSection = criarExercicio();
         aprendaSection = criarAprenda();
     }
 
     @FXML
     private void mostrarHome(){
         mainArea.getChildren().setAll(homeSection);
+    }
+    @FXML
+    private void mostrarExercicio(){
+        mainArea.getChildren().setAll(exercicioSection);
     }
     @FXML
     private void mostrarAprenda(){
