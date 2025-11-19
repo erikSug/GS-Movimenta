@@ -1,6 +1,6 @@
 # Projeto Movimenta
 ## O que é?
-O Projeto Movimenta é uma plataforma de incentivo de exercícios para os trabalhadores. O objetivo é melhorar tanto a saúde mental quanto a sua produtividade, reduzindo os riscos de doenças da Era Moderna como Depressão e Burnout.
+O Projeto Movimenta é uma plataforma de incentivo de exercícios para os trabalhadores. O objetivo é melhorar tanto a saúde mental quanto a sua produtividade, reduzindo os riscos de doenças da Era Moderna como Depressão e Burnout. Utilizamos tecnologias como Java e JavaFX para a construção desse programa.
 ## Funcionalidades
 - Sistema de Login.
 - Sistema de pontuação dependendo do tipo do exercício (Leve/Pesado).
