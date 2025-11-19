@@ -9,8 +9,8 @@ O Projeto Movimenta é uma plataforma de incentivo de exercícios para os trabal
 ## Como utilizar?
 - Basta rodar o MainApp.
 - Utilize:
-  - nome: teste.
-  - senha: 123.
+  - Nome: teste.
+  - Senha: 123.
 ## Vídeo demonstração
 [Video mostrando as funcionalidades.](https://youtu.be/HHLfJbMWqoE)
 ## Integrantes
